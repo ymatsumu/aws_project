@@ -6,4 +6,4 @@
 
 This is a documentation of how I used Amazon VPC to deploy [WordPress](https://wordpress.com/).
 
-The in-progress documentation is available [here](https://ymatsumu.github.io/aws_project/).
+The in-progress documentation is available [here](https://ymatsumu.github.io/aws_project/htmlfiles/main.html).
