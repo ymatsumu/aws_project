@@ -1,0 +1,56 @@
+<!-- natgateway.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .image-container {
+                text-align: center;
+            }
+
+            img {
+                max-width: 70%;
+                height: auto;
+                display: block;
+                margin: 0 auto;
+                margin-bottom: 20px;
+            }
+
+            .caption {
+                max-width: 70%;
+                font-size: 14px;
+                color: rgb(96, 96, 96);
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+
+    <body>
+        <p>
+            Private App Subnets and Private Data Subnets are not connected to Public Route Table that is connected to the internet gateway.
+            So the next step is to create NAT gateways for the two Availability Zones.
+            <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html" target="_blank">Network Address Translation gateway</a>
+            (NAT gateway) is used for instances in a private subnet to be able to connect ot services outside VPC.
+            I first created a public NAT gateway in each Public Subnet with the two Availavility Zones with 
+            <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html" target="_blank">Elastic IP address</a>
+            (EIP). This would automatically allocate an EIP for the public NAT gateways. 
+            <br><br>
+
+            I then added a private route table for each Availability Zone. 
+            The destination of the route tables are 0.0.0.0/0 and the target is NAT gateway for each Availability Zone. 
+            After that, I associated each private route table to Private App Subnet and Private Data Subnet for each Availability Zone. 
+            <br><br>
+
+
+        </p>
+
+        <figure class="image-container">
+            <img src="map.png", alt="Image of my sourse map", style="width:auto;">
+            <figcaption class="caption">
+                Sourse map of my VPC. 
+                Public Subnet AZ1 and Public Subnet AZ2 are associated with Public Route Table with a route to the Dev Internet Gateway.
+                Private Data Subnet AZ1 and Private App Subnet AZ1 are associated with Private Route Table AZ1, whose target is NAT Gateway AZ1.
+                Private Data Subnet AZ2 and Private App Subnet AZ2 are associated with Private Route Table AZ2, whose target is NAT Gateway AZ2.
+            </figcaption>
+        </figure>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<!-- vpc.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    
+    <body>
+        <p>
+            <a href="https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html" target="_blank">Virtual Private Cloud</a>
+            (VPC) is a virtual network that I would opetate in my own data center.
+            To create VPS with private and public subnets (smaller networks within a network), I first logged in to my AWS Management Console as an 
+            <a href="https://aws.amazon.com/iam/?gclid=CjwKCAiA9ourBhAVEiwA3L5RFjEmNuagIiLyaKpkcRs1Vh4oSRB7Sd-Qi6Dkq_zdlWenANpmv-fdhRoC4QwQAvD_BwE&trk=da94b437-337f-4ee7-81b4-5dcf158370ab&sc_channel=ps&ef_id=CjwKCAiA9ourBhAVEiwA3L5RFjEmNuagIiLyaKpkcRs1Vh4oSRB7Sd-Qi6Dkq_zdlWenANpmv-fdhRoC4QwQAvD_BwE:G:s&s_kwcid=AL!4422!3!651737511581!e!!g!!iam%20user!19845796027!146736269229" target="_blank">IAM user</a>
+            and specified Classless Inter-Domain Routing for my VPC. 
+            <a href="https://aws.amazon.com/what-is/cidr/" target="_blank">Classless Inter-Domain Routing</a>
+            (CICD) gives you flexibility in assigning IP address and routing data between devices, and VPC uses CIDR IP addresses when it transfers data packets between connected devices.
+            Click 
+            <a href="https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html" target="_blank">here</a>
+            for more on a subnet.
+
+            I then created private public subnets (smaller networks within a network) in US East (Ohio) and US East (N. Virginia) Availability Zones
+            since 
+            <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html" target="_blank">AWS</a>
+            makes it clear that "if you host all your DB instances in one location that is affected by
+            a failure, none of your DB instances will be available." 
+            <br><br>
+
+            I then created an
+            <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html" target="_blank">internet gateway</a>
+            , which allows communication beteween my VPC and the internet, and attached it to my VPC. 
+            Within VPC, I created three subnets (Public Subnet, Private App Subnet, and Private Data Subnet) for each of the two Availability Zones, each with a unique CICD.
+            After making a route table called Public Route Table, next step is to add a route to the route table. 
+            This route should direct internet-bound traffic to the internet gateway just created, so I chose the destination of the route to be 0.0.0.0/0 so that any system request could be accepted.
+            (More on that from 
+            <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html" target="_blank">here</a>
+            .)
+            A subnet that is associated with a route table with a route to the internet gateway is called a public subnet.
+            I associated the Public Subnets in each Availability Zone to the route. 
+            Private App Subnets and Private Data Subnets are by default associated with a Main Route Table, which is automatically created when a VPC is created. 
+            More about configuring route tables is on 
+            <a href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html" target="_blank">Configure route tables</a>.
+
+     
+
+
+            
+
+         </p>
+        
+    </body>
+</html>
