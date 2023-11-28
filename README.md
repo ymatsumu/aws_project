@@ -1,3 +1,3 @@
 # aws_project
 
-- Project start data: November 25
+- Project start date: November 25
